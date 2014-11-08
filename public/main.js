@@ -1,6 +1,7 @@
 var myMyo = Myo.create();
 var l = 0.3;
-
+var SerialPort = require("serialport").SerialPort;
+var serialPort = new SerialPort("/dev/ttyACM0", {baudrate 9600});
 Myo.on('connected', function(){
     console.log('connected!', this.id)
     document.getElementById('connected').innerHTML = "CONNECTED";
@@ -33,6 +34,26 @@ myMyo.on('rest', function(edge){
     	velocity = get_velocity(data);
     	console.log('velocity', velocity);
     	dist = get_distance(velocity);
+
+        if (dist > 2 || if dist < .5){
+            out = 2
+        }
+        else if (dist >1.5 || dist <1){
+            out = 1
+        }
+        else{out = 0}
+        serialPort.on("open", function () {
+            console.log('open');
+            serialPort.on('data', function(data) {
+                console.log('data received: ' + data);
+            });
+            serialPort.write("ls\n", function(err, results) {
+                console.log('err ' + err);
+                console.log('results ' + results);
+            });
+        });
+        serialPort.write(out)
+        serialPort.close()
     	console.log(dist);
     	myMyo.lock();
     }
