@@ -1,0 +1,14 @@
+#readyCircle {
+	background: #BADA55;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 72pt;
+}
+
+.hidden {
+	display: none;
+}
+
+.lost {
+	color: red;
+}

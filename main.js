@@ -4,21 +4,25 @@ var l = 0.3;
 Myo.on('connected', function(){
     console.log('connected!', this.id)
     document.getElementById('connected').innerHTML = "CONNECTED";
+    document.getElementById('connected').classList.remove('lost');
 });
 
 Myo.on('disconnected', function(){
     console.log('disconnected!', this.id)
     document.getElementById('connected').innerHTML = "DISCONNECTED";
+    document.getElementById('connected').classList.add('lost');
 });
 
 Myo.on('arm_recognized', function(){
     console.log('arm_recognized', this.id)
     document.getElementById('arm_recognized').innerHTML = "ARM RECOGNIZED";
+    document.getElementById('arm_recognized').classList.remove('lost');
 });
 
 Myo.on('arm_lost', function(){
     console.log('arm_lost', this.id)
     document.getElementById('arm_recognized').innerHTML = "ARM LOST";
+    document.getElementById('arm_recognized').classList.add('lost');
 });
 
 myMyo.on('rest', function(edge){
@@ -51,11 +55,15 @@ myMyo.on('fist', function(edge){
     //Edge is true if it's the start of the pose, false if it's the end of the pose
     myMyo.timer(edge, 500, function(){
     	console.log('fist');
+    	document.getElementById('readyCircle').style.display = "block";
     	myMyo.unlock(2000);
         myMyo.zeroOrientation();
         data = myMyo.lastIMU;
     	console.log(data);
     })
+    if (!edge) {
+    	document.getElementById('readyCircle').style.display = "none";
+    };
 });
 
 function get_velocity (data) {
