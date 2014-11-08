@@ -1,0 +1,3 @@
+[submodule "myo.js"]
+	path = myo.js
+	url = https://github.com/stolksdorf/myo.js.git
