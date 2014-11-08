@@ -1,6 +1,6 @@
 void illuminateLed(int number){
   
-  
+ 
   number = number - 1;
   int x;
   int y;
@@ -27,6 +27,7 @@ void illuminateLed(int number){
   }
 }
 void loop(){
+   int incomingByte;
   // Center Flashing
   
      if (Serial.available() > 0) {
