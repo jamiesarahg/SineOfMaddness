@@ -1,3 +1,6 @@
 [submodule "myo.js"]
 	path = myo.js
 	url = https://github.com/stolksdorf/myo.js.git
+[submodule "lib/submodule"]
+	path = lib/submodule
+	url = https://github.com/stolksdorf/myo.js.git
